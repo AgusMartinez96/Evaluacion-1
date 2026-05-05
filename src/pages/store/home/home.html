@@ -1,9 +1,14 @@
 <body>
-  <h1>Catálogo</h1>
+  <h1>Catalogo</h1>
+  <!-- Barra de búsqueda -->
+  <input type="text" id="search" placeholder="Buscar producto...">
+
+  <!-- Filtro por categoría -->
+  <select id="category-filter">
+    <option value="">Todas las categorias</option>
+  </select>
   <div id="product-list"></div>
-
   <a href="../cart/cart.html">Ir al carrito</a>
-
-  <!-- Importante: apuntar al .js porque Vite transpila el .ts -->
+  <!-- Apuntar al .js porque Vite transpila el .ts -->
   <script type="module" src="./home.js"></script>
 </body>
