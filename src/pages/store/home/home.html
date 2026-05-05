@@ -1,17 +1,9 @@
 <body>
   <h1>Catálogo</h1>
-  <div id="product-list">
-    <div>
-      <span>Producto A - $1000</span>
-      <button onclick="addToCart(1)">Agregar</button>
-    </div>
-    <div>
-      <span>Producto B - $2000</span>
-      <button onclick="addToCart(2)">Agregar</button>
-    </div>
-  </div>
+  <div id="product-list"></div>
 
   <a href="../cart/cart.html">Ir al carrito</a>
 
-  <script type="module" src="./home.ts"></script>
+  <!-- Importante: apuntar al .js porque Vite transpila el .ts -->
+  <script type="module" src="./home.js"></script>
 </body>
