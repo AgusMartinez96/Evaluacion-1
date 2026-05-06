@@ -20,15 +20,22 @@ const renderProducts = () => {
 
   productList.innerHTML = "";
 
-  PRODUCTS.forEach((p) => {
-    if (!p.disponible) return; // no mostrar productos no disponibles
+  // Filtrar primero
+  const filtered = PRODUCTS.filter((p) => {
+    if (!p.disponible) return false;
+    if (searchTerm && !p.nombre.toLowerCase().includes(searchTerm)) return false;
+    if (selectedCategory && !p.categorias.some(c => c.id.toString() === selectedCategory)) return false;
+    return true;
+  });
 
-     // Filtro por nombre
-    if (searchTerm && !p.nombre.toLowerCase().includes(searchTerm)) return;
+  // Si no hay resultados, mostrar mensaje
+  if (filtered.length === 0) {
+    productList.innerHTML = "<p>No se encontraron productos.</p>";
+    return;
+  }
 
-    // Filtro por categoría
-    if (selectedCategory && !p.categorias.some(c => c.id.toString() === selectedCategory)) return;
-
+  // Renderizar los productos filtrados
+  filtered.forEach((p) => {
     const card = document.createElement("div");
     card.innerHTML = `
       <span>${p.nombre} - $${p.precio}</span>
