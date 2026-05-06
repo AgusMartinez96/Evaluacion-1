@@ -65,6 +65,12 @@ const addToCart = (productId: number) => {
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
+  // Mostrar feedback visual
+  const feedbackEl = document.getElementById("feedback");
+  if (feedbackEl) {
+    feedbackEl.textContent = "Producto agregado al carrito";
+    setTimeout(() => (feedbackEl.textContent = ""), 2000);
+  }
 };
 
 (window as any).addToCart = addToCart;
