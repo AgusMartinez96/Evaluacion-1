@@ -1,8 +1,9 @@
 const renderCart = () => {
   const cartItemsContainer = document.getElementById("cart-items");
+  const cartSubtotalContainer = document.getElementById("cart-subtotal");
   const cartTotalContainer = document.getElementById("cart-total");
 
-  if (!cartItemsContainer || !cartTotalContainer) {
+  if (!cartItemsContainer || !cartSubtotalContainer || !cartTotalContainer) {
     console.error("No se encontraron los contenedores en el HTML");
     return;
   }
@@ -11,29 +12,44 @@ const renderCart = () => {
 
   cartItemsContainer.innerHTML = "";
 
-  // Si el carrito esta vacio, mostrar mensaje
+  // Si el carrito está vacío
   if (cart.length === 0) {
     cartItemsContainer.innerHTML = "<p>El carrito está vacío.</p>";
-    cartTotalContainer.textContent = "";
+    cartSubtotalContainer.textContent = "Subtotal: $0";
+    cartTotalContainer.textContent = "Total: $0";
     return;
   }
 
-  let total = 0;
+  let subtotal = 0;
+
   cart.forEach((item: any) => {
     const row = document.createElement("div");
-    // Uso de botones - y +
-    row.innerHTML = `
-      ${item.name} - $${item.price} x ${item.quantity}
+    row.className = "cart-item";
+
+    const itemInfo = document.createElement("span");
+    itemInfo.className = "item-info";
+    itemInfo.textContent = `${item.name} - $${item.price} x ${item.quantity}`;
+
+    const itemActions = document.createElement("div");
+    itemActions.className = "item-actions";
+    itemActions.innerHTML = `
       <button onclick="updateQuantity(${item.id}, -1)">–</button>
       <button onclick="updateQuantity(${item.id}, 1)">+</button>
+      <button onclick="removeItem(${item.id})">Eliminar</button>
     `;
+
+    row.appendChild(itemInfo);
+    row.appendChild(itemActions);
     cartItemsContainer.appendChild(row);
-    total += item.price * item.quantity;
+
+    subtotal += item.price * item.quantity;
   });
 
-  cartTotalContainer.textContent = `Total: $${total}`;
+  cartSubtotalContainer.textContent = `Subtotal: $${subtotal}`;
+  cartTotalContainer.textContent = `Total: $${subtotal}`;
 };
 
+// Actualizar cantidad
 const updateQuantity = (productId: number, change: number) => {
   const cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
@@ -41,17 +57,25 @@ const updateQuantity = (productId: number, change: number) => {
   if (item) {
     item.quantity += change;
     if (item.quantity <= 0) {
-      // Si la cantidad llega a 0 se elimina el producto
       const index = cart.indexOf(item);
       cart.splice(index, 1);
     }
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
-  renderCart(); // vuelve a renderizar el carrito
+  renderCart();
 };
 
-// Expongo la funcion para usarla de manera global
-(window as any).updateQuantity = updateQuantity; 
+// Eliminar producto
+const removeItem = (productId: number) => {
+  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  cart = cart.filter((i: any) => i.id !== productId);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+};
+
+// Exponer funciones globales
+(window as any).updateQuantity = updateQuantity;
+(window as any).removeItem = removeItem;
 
 renderCart();

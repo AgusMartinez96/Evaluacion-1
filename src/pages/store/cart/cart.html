@@ -1,16 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Enlace al CSS -->
+  <link rel="stylesheet" href="./cart.css">
+  <title>Mi Carrito</title>
+</head>
 <body>
   <h1>Mi Carrito</h1>
 
-  <!-- Contenedor principal del carrito -->
-  <div id="cart-items" class="cart-container"></div>
+  <div class="cart-layout">
+    <!-- Productos -->
+    <div id="cart-items" class="cart-container"></div>
 
-  <!-- Total -->
-  <div class="cart-summary">
-    <h2 id="cart-total"></h2>
-    <!-- Botón para volver al catálogo -->
-    <a href="../home/home.html">Volver al catalogo</a>
+    <!-- Resumen -->
+    <aside class="cart-summary">
+      <h2>Resumen</h2>
+      <p id="cart-subtotal">Subtotal: $0</p>
+      <p id="cart-total">Total: $0</p>
+      <button>Finalizar compra</button>
+      <p class="warning">El checkout no está disponible en esta versión</p>
+      <button>Vaciar carrito</button>
+      <a href="../home/home.html">← Volver al catálogo</a>
+    </aside>
   </div>
 
-  <!-- Script -->
   <script type="module" src="./cart.js"></script>
 </body>
+
+</html>
