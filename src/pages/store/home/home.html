@@ -17,23 +17,24 @@
     </div>
   </nav>
 
-  <h1>Catálogo</h1>
+  <div class="catalog-layout">
+    <!-- Menú lateral -->
+    <aside class="sidebar">
+      <h2>Categorías</h2>
+      <ul id="category-list">
+        <li data-id="">Todos los productos</li>
+      </ul>
+    </aside>
 
-  <!-- Barra de búsqueda -->
-  <input type="text" id="search" placeholder="Buscar producto...">
+    <!-- Sección principal -->
+    <main class="main-content">
+      <h1>Catálogo</h1>
+      <input type="text" id="search" placeholder="Buscar producto...">
+      <div id="product-list"></div>
+      <p id="feedback"></p>
+    </main>
+  </div>
 
-  <!-- Filtro por categoría -->
-  <select id="category-filter">
-    <option value="">Todas las categorías</option>
-  </select>
-
-  <!-- Contenedor de productos -->
-  <div id="product-list"></div>
-
-  <!-- Contenedor para feedback -->
-  <p id="feedback"></p>
-
-  <!-- Apuntar al .js porque Vite transpila el .ts -->
   <script type="module" src="./home.js"></script>
 </body>
 </html>
