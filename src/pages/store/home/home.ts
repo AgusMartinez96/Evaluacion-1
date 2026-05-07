@@ -37,8 +37,11 @@ const renderProducts = () => {
   // Renderizar los productos filtrados
   filtered.forEach((p) => {
     const card = document.createElement("div");
+    card.className = "product-card"; // Css
     card.innerHTML = `
-      <span>${p.nombre} - $${p.precio}</span>
+      <img src="${p.imagen}" alt="${p.nombre}" class="product-img">
+      <h3>${p.nombre}</h3>
+      <p>$${p.precio}</p>
       <button onclick="addToCart(${p.id})">Agregar</button>
     `;
     productList.appendChild(card);
@@ -66,11 +69,33 @@ const addToCart = (productId: number) => {
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
-  // Mostrar feedback visual
-  const feedbackEl = document.getElementById("feedback");
-  if (feedbackEl) {
-    feedbackEl.textContent = "Producto agregado al carrito";
-    setTimeout(() => (feedbackEl.textContent = ""), 2000);
+  
+  // Efecto en la tarjeta y boton
+  const card = document.querySelector(`.product-card button[onclick="addToCart(${productId})"]`)?.parentElement;
+  const button = card?.querySelector("button");
+
+  if (card && button) {
+    card.classList.add("added");
+    button.classList.add("added");
+
+    // Cambiar texto del botón a "Agregado"
+    const originalText = button.textContent;
+    button.textContent = "Agregado ✅";
+
+    setTimeout(() => {
+      card.classList.remove("added");
+      button.classList.remove("added");
+      button.textContent = originalText; // vuelve a "Agregar"
+    }, 1000);
+  }
+};
+
+const updateCartCount = () => {
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const count = cart.reduce((acc: number, item: any) => acc + item.quantity, 0);
+  const cartCountEl = document.getElementById("cart-count");
+  if (cartCountEl) {
+    cartCountEl.textContent = count.toString();
   }
 };
 
