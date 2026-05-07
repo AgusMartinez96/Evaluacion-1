@@ -17,6 +17,7 @@ const renderCart = () => {
     cartItemsContainer.innerHTML = "<p>El carrito está vacío.</p>";
     cartSubtotalContainer.textContent = "Subtotal: $0";
     cartTotalContainer.textContent = "Total: $0";
+    updateCartCount(); // Actualizamos contador vacio
     return;
   }
 
@@ -56,6 +57,8 @@ const renderCart = () => {
 
   cartSubtotalContainer.textContent = `Subtotal: $${subtotal}`;
   cartTotalContainer.textContent = `Total: $${subtotal}`;
+
+  updateCartCount(); // Actualizamos el contador cada vez que se renderiza
 };
 
 // Actualizar cantidad
@@ -88,9 +91,19 @@ const emptyCart = () => {
   renderCart();
 };
 
+const updateCartCount = () => {
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const count = cart.reduce((acc: number, item: any) => acc + item.quantity, 0);
+  const cartCountEl = document.getElementById("cart-count");
+  if (cartCountEl) {
+    cartCountEl.textContent = count.toString();
+  }
+};
+
 // Exponer funciones globales
 (window as any).updateQuantity = updateQuantity;
 (window as any).removeItem = removeItem;
 (window as any).emptyCart = emptyCart;
 
 renderCart();
+updateCartCount();
