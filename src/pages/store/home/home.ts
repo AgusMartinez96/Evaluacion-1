@@ -69,6 +69,9 @@ const addToCart = (productId: number) => {
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
+
+   // Actualizar contador de carrito
+  updateCartCount();
   
   // Efecto en la tarjeta y boton
   const card = document.querySelector(`.product-card button[onclick="addToCart(${productId})"]`)?.parentElement;
@@ -106,3 +109,5 @@ searchInput.addEventListener("input", renderProducts);
 categoryFilter.addEventListener("change", renderProducts);
 
 renderProducts();
+updateCartCount();
+
