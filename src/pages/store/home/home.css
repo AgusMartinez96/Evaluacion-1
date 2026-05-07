@@ -166,3 +166,20 @@ p, li, span, button {
   color: white;
   font-weight: bold;
 }
+
+/* Barra de búsqueda */
+#search {
+  width: 100%;
+  max-width: 300px;       /* 👈 limita el ancho */
+  padding: 8px 12px;      /* 👈 menos alto, más cómodo */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;        /* 👈 texto más chico */
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+#search:focus {
+  border-color: #28a745;  /* 👈 verde al enfocar */
+  box-shadow: 0 0 4px rgba(40, 167, 69, 0.3);
+}
