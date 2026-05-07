@@ -41,3 +41,97 @@
   font-size: 14px;
   color: red;
 }
+
+/* Barra de navegación */
+.navbar {
+  background-color: #1d8135; /* verde */
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.navbar .nav-links a {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar .nav-links a:hover {
+  text-decoration: underline;
+}
+
+#cart-count {
+  background-color: orange;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+/* Tarjeta de producto */
+.cart-item {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.item-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 15px;
+}
+
+.item-info {
+  flex: 2;
+}
+
+.item-info h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.item-info p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.item-actions button {
+  border: 1px solid #ccc;
+  background-color: #eee;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.item-actions button:hover {
+  background-color: #ddd;
+}
+
+.item-actions .quantity {
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  min-width: 30px;
+  text-align: center;
+  background: #f9f9f9;
+}

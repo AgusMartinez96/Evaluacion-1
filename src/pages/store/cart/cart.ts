@@ -26,18 +26,27 @@ const renderCart = () => {
     const row = document.createElement("div");
     row.className = "cart-item";
 
+    // Imagen del producto
+    const img = document.createElement("img");
+    img.src = item.image; // Asegurarse que cada producto tenga item.image en localStorage
+    img.alt = item.name;
+    img.className = "item-img";
+
+    // Informacion del producto
     const itemInfo = document.createElement("span");
     itemInfo.className = "item-info";
-    itemInfo.textContent = `${item.name} - $${item.price} x ${item.quantity}`;
+    itemInfo.textContent = `${item.name} - $${item.price} x ${item.quantity} = $${item.price * item.quantity}`;
 
     const itemActions = document.createElement("div");
     itemActions.className = "item-actions";
     itemActions.innerHTML = `
       <button onclick="updateQuantity(${item.id}, -1)">–</button>
+      <span class="quantity">${item.quantity}</span>
       <button onclick="updateQuantity(${item.id}, 1)">+</button>
       <button onclick="removeItem(${item.id})">Eliminar</button>
     `;
 
+    row.appendChild(img)
     row.appendChild(itemInfo);
     row.appendChild(itemActions);
     cartItemsContainer.appendChild(row);
@@ -74,8 +83,14 @@ const removeItem = (productId: number) => {
   renderCart();
 };
 
+const emptyCart = () => {
+  localStorage.setItem("cart", JSON.stringify([]));
+  renderCart();
+};
+
 // Exponer funciones globales
 (window as any).updateQuantity = updateQuantity;
 (window as any).removeItem = removeItem;
+(window as any).emptyCart = emptyCart;
 
 renderCart();

@@ -60,6 +60,7 @@ const addToCart = (productId: number) => {
         name: product.nombre,
         price: product.precio,
         quantity: 1,
+        image: product.imagen // Guardamos la imagen
       });
     }
   }

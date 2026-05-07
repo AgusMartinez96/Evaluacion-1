@@ -7,6 +7,14 @@
   <title>Mi Carrito</title>
 </head>
 <body>
+  <nav class="navbar">
+    <span class="logo">FoodStore</span>
+    <div class="nav-links">
+      <a href="../home/home.html">Catálogo</a>
+      <a href="./cart.html">Carrito <span id="cart-count">0</span></a>
+    </div>
+  </nav>
+  
   <h1>Mi Carrito</h1>
 
   <div class="cart-layout">
@@ -20,7 +28,7 @@
       <p id="cart-total">Total: $0</p>
       <button>Finalizar compra</button>
       <p class="warning">El checkout no está disponible en esta versión</p>
-      <button>Vaciar carrito</button>
+      <button onclick="emptyCart()">Vaciar carrito</button>
       <a href="../home/home.html">← Volver al catálogo</a>
     </aside>
   </div>
