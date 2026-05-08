@@ -48,6 +48,23 @@ p, li, span, button {
   cursor: pointer;
 }
 
+.cart-summary a {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 14px;
+  background-color: #19722e; /* verde consistente con la navbar */
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cart-summary a:hover {
+  background-color: #145622; /* tono más oscuro al pasar el mouse */
+  transform: translateX(-3px); /* leve movimiento hacia la izquierda */
+}
+
 .warning {
   font-size: 14px;
   color: red;

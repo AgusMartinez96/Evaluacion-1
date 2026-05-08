@@ -2,9 +2,9 @@ import { PRODUCTS, getCategories } from "../../../data/data";
 
 const productList = document.getElementById("product-list");
 const searchInput = document.getElementById("search") as HTMLInputElement;
-const categoryList = document.getElementById("category-list"); // 👈 ahora usamos UL
+const categoryList = document.getElementById("category-list");
 
-// Renderizar categorías en la lista
+// Renderizar categorias en la lista
 getCategories().forEach((c) => {
   const li = document.createElement("li");
   li.textContent = c.nombre;
@@ -75,7 +75,7 @@ const addToCart = (productId: number) => {
     button.classList.add("added");
 
     const originalText = button.textContent;
-    button.textContent = "Agregado ✅";
+    button.textContent = "Agregado";
 
     setTimeout(() => {
       card.classList.remove("added");
