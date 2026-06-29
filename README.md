@@ -1,83 +1,43 @@
-# Proyecto: Protección de Rutas (Educativo)
+# FoodStore - Proyecto Frontend
 
-## ✍️ Descripción
+## Descripción breve
+FoodStore es una aplicación web frontend que simula un catálogo de productos con carrito de compras.  
+Permite visualizar productos, filtrarlos por categoría, buscarlos por nombre y agregarlos al carrito con persistencia en `localStorage`.
 
-Este es un proyecto de demostración creado con fines educativos para ilustrar un mecanismo básico de protección de rutas en el lado del cliente (frontend) utilizando **Vite** y **TypeScript**.
+## Funcionalidades principales
+- Catálogo dinámico de productos con imágenes, nombre y precio.
+- Barra de búsqueda para filtrar productos por nombre.
+- Menú lateral para filtrar por categorías.
+- Carrito de compras con contador en la navbar.
+- Persistencia del carrito en `localStorage`.
+- Resumen de compra con subtotal y total.
 
-El objetivo es mostrar cómo se puede restringir el acceso a ciertas páginas según el rol de un usuario (por ejemplo, `ADMIN` o `CLIENT`).
+## ▶️ Instrucciones para ejecutar
+1. Descargar y descomprimir el archivo `.zip` del proyecto.  
+2. Abrir una terminal en la carpeta raíz del proyecto.  
+3. Instalar dependencias:  
+   ```bash
+   pnpm install
+4. Levantar el servidor de preview sobre el build ya generado:
+   pnpm preview
+5. Abrir el navegador en la dirección que aparece.
+6. Desde ahí se puede navegar entre el catálogo y el carrito para probar todas las funcionalidades.
 
----
 
-## ⚠️ ¡Importante! Nivel de Seguridad
+## Estructura del proyecto
 
-La protección de rutas implementada en este proyecto **NO ES SEGURA** y no debe utilizarse en un entorno de producción.
-
-- **Razón**: La lógica de autenticación se basa en datos guardados en `localStorage` en el navegador del usuario.
-- **Riesgo**: Cualquier usuario con conocimientos técnicos básicos puede abrir las herramientas de desarrollador del navegador para inspeccionar, modificar o eliminar los datos de `localStorage`, obteniendo así acceso no autorizado a rutas protegidas.
-
-Este enfoque es útil únicamente para fines de aprendizaje y para prototipos de bajo riesgo. La seguridad real debe implementarse en el **backend**.
-
----
-
-## 🚀 Instalación y Uso
-
-Se recomienda usar `pnpm` como gestor de paquetes para mayor eficiencia en el manejo de dependencias.
-
-### 1. Instalar pnpm
-
-Si no tienes `pnpm` instalado, puedes hacerlo fácilmente a través de `npm` (que viene con Node.js) ejecutando el siguiente comando en tu terminal:
-
-```bash
-npm install -g pnpm
-```
-
-### 2. Instalar Dependencias del Proyecto
-
-Una vez en la carpeta raíz del proyecto, instala las dependencias necesarias con `pnpm`:
-
-```bash
-pnpm install
-```
-
-### 3. Ejecutar el Proyecto
-
-Para iniciar el servidor de desarrollo de Vite, ejecuta:
-
-```bash
-pnpm dev
-```
-
-La aplicación estará disponible en la URL que aparezca en la terminal (generalmente `http://localhost:5173`).
-
----
-
-## ⚙️ ¿Cómo Funciona la Protección de Rutas?
-
-El mecanismo es simple y se gestiona desde el código TypeScript en la carpeta `src/utils`:
-
-1.  **Inicio de Sesión**: Cuando un usuario se "loguea", su información (incluido su rol) se guarda como un string JSON en `localStorage`.
-2.  **Carga de Página Protegida**: Cada vez que se intenta cargar una página protegida (ej. la página de Administrador), se ejecuta un script de verificación (`checkAuhtUser` en `src/utils/auth.ts`).
-3.  **Verificación**: El script comprueba:
-    - Si existe un usuario en `localStorage`. Si no, redirige al login.
-    - Si el rol del usuario guardado coincide con el rol requerido para acceder a esa página. Si no coincide, lo redirige a una página de acceso denegado o a su "home" correspondiente.
-4.  **Cierre de Sesión (Logout)**: Al cerrar sesión, la información del usuario se elimina de `localStorage`.
-
----
-
-## 📁 Estructura del Proyecto
-
-```
-/
-├── src/
-│   ├── pages/                # Contiene las páginas de la aplicación
-│   │   ├── admin/            # Páginas solo para administradores
-│   │   ├── auth/             # Páginas de autenticación (login, registro)
-│   │   └── client/           # Páginas solo para clientes
-│   ├── types/                # Define las interfaces y tipos (IUser, Rol)
-│   └── utils/                # Lógica reutilizable
-│       ├── auth.ts           # Función principal de verificación de rol y sesión
-│       ├── localStorage.ts   # Funciones para leer/escribir en localStorage
-│       └── navigate.ts       # Función para redirigir al usuario
-├── package.json              # Dependencias y scripts
-└── README.md                 # Este archivo
-```
+📦 primer_parcial/
+ ┣ 📂 home/
+ ┃ ┣ 📄 home.html
+ ┃ ┣ 📄 home.css
+ ┃ ┗ 📄 home.ts
+ ┣ 📂 cart/
+ ┃ ┣ 📄 cart.html
+ ┃ ┣ 📄 cart.css
+ ┃ ┗ 📄 cart.ts
+ ┣ 📂 data/
+ ┃ ┗ 📄 data.ts
+ ┣ 📄 vite.config.ts
+ ┣ 📄 package.json
+ ┣ 📄 tsconfig.json
+ ┣ 📄 README.md
