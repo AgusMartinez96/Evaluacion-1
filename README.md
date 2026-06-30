@@ -12,6 +12,7 @@ Permite visualizar productos, filtrarlos por categoría, buscarlos por nombre y 
 - Persistencia del carrito en `localStorage`.
 - Resumen de compra con subtotal y total.
 
+<<<<<<< HEAD
 ## ▶️ Instrucciones para ejecutar
 1. Descargar y descomprimir el archivo `.zip` del proyecto.  
 2. Abrir una terminal en la carpeta raíz del proyecto.  
@@ -26,6 +27,16 @@ Permite visualizar productos, filtrarlos por categoría, buscarlos por nombre y 
 
 ## Estructura del proyecto
 
+=======
+## Instrucciones para ejecutar
+1. Descargar y descomprimir el archivo `.zip` del proyecto.  
+2. Abrir la carpeta `dist/`.  
+3. Hacer doble clic en el archivo `index.html` (o abrirlo en el navegador).  
+4. Desde ahí se puede navegar entre el catálogo y el carrito para probar todas las funcionalidades.  
+
+## Estructura del proyecto
+
+>>>>>>> 3426fd525f9466790eecda06fbb887effc8baf37
 📦 primer_parcial/
  ┣ 📂 home/
  ┃ ┣ 📄 home.html
