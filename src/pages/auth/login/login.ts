@@ -1,30 +1,33 @@
-import type { IUser } from "../../../types/IUser";
-import type { Rol } from "../../../types/Rol";
+import { getUsuarios } from "../../../utils/fetch";
 import { navigate } from "../../../utils/navigate";
 
 const form = document.getElementById("form") as HTMLFormElement;
-const inputEmail = document.getElementById("email") as HTMLInputElement;
-//const inputPassword = document.getElementById("password") as HTMLInputElement;
-const selectRol = document.getElementById("rol") as HTMLSelectElement;
 
-form.addEventListener("submit", (e: SubmitEvent) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const valueEmail = inputEmail.value;
-  //const valuePassword = inputPassword.value;
-  const valueRol = selectRol.value as Rol;
 
-  if (valueRol === "admin") {
-    navigate("/src/pages/admin/home/home.html");
-  } else if (valueRol === "client") {
-    navigate("/src/pages/client/home/home.html");
+  const email = (document.getElementById("email") as HTMLInputElement).value.trim();
+  const password = (document.getElementById("password") as HTMLInputElement).value.trim();
+
+  if (!email || !password) {
+    alert("Por favor completá todos los campos");
+    return;
   }
 
-  const user: IUser = {
-    email: valueEmail,
-    role: valueRol,
-    loggedIn: true,
-  };
+  const usuarios = await getUsuarios();
+  const usuario = usuarios.find((u) => u.mail === email && u.password === password);
 
-  const parseUser = JSON.stringify(user);
-  localStorage.setItem("userData", parseUser);
+  if (!usuario) {
+    alert("Credenciales incorrectas");
+    return;
+  }
+
+  const { password: _, ...usuarioSinPassword } = usuario;
+  localStorage.setItem("user", JSON.stringify(usuarioSinPassword));
+
+  if (usuario.rol === "ADMIN") {
+    navigate("/src/pages/admin/adminHome/home.html");
+  } else {
+    navigate("/src/pages/store/home/home.html");
+  }
 });
