@@ -1,5 +1,6 @@
 import { getUsuarios } from "../../../utils/fetch";
 import { navigate } from "../../../utils/navigate";
+import { saveUser } from "../../../utils/localStorage";
 
 const form = document.getElementById("form") as HTMLFormElement;
 
@@ -23,7 +24,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   const { password: _, ...usuarioSinPassword } = usuario;
-  localStorage.setItem("user", JSON.stringify(usuarioSinPassword));
+  saveUser(usuarioSinPassword);
 
   if (usuario.rol === "ADMIN") {
     navigate("/src/pages/admin/adminHome/home.html");

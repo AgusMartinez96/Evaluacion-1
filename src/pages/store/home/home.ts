@@ -1,28 +1,33 @@
-import { PRODUCTS, getCategories } from "../../../data/data";
+import { getCategorias, getProductos } from "../../../utils/fetch";
+import { checkAuhtUser } from "../../../utils/auth";
+import type { Product } from "../../../types/product";
+
+checkAuhtUser("/src/pages/auth/login/login.html", "/src/pages/auth/login/login.html", "USUARIO");
 
 const productList = document.getElementById("product-list");
 const searchInput = document.getElementById("search") as HTMLInputElement;
 const categoryList = document.getElementById("category-list");
 
-// Renderizar categorias en la lista
-getCategories().forEach((c) => {
-  const li = document.createElement("li");
-  li.textContent = c.nombre;
-  li.setAttribute("data-id", c.id.toString());
-  categoryList?.appendChild(li);
-});
+let allProducts: Product[] = [];
+let selectedCategory: string = "";
 
-// Renderizar productos con filtro
-const renderProducts = (selectedCategory: string = "") => {
+const updateCartCount = () => {
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const count = cart.reduce((acc: number, item: any) => acc + item.quantity, 0);
+  const cartCountEl = document.getElementById("cart-count");
+  if (cartCountEl) cartCountEl.textContent = count.toString();
+};
+
+const renderProducts = () => {
   if (!productList) return;
 
-  const searchTerm = searchInput.value.toLowerCase();
+  const searchTerm = searchInput?.value.toLowerCase() || "";
   productList.innerHTML = "";
 
-  const filtered = PRODUCTS.filter((p) => {
-    if (!p.disponible) return false;
+  const filtered = allProducts.filter((p) => {
+    if (!p.disponible || p.eliminado) return false;
     if (searchTerm && !p.nombre.toLowerCase().includes(searchTerm)) return false;
-    if (selectedCategory && !p.categorias.some(c => c.id.toString() === selectedCategory)) return false;
+    if (selectedCategory && p.categoriaId.toString() !== selectedCategory) return false;
     return true;
   });
 
@@ -46,72 +51,69 @@ const renderProducts = (selectedCategory: string = "") => {
 
 const addToCart = (productId: number) => {
   const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-
   const existing = cart.find((item: any) => item.id === productId);
 
   if (existing) {
     existing.quantity += 1;
   } else {
-    const product = PRODUCTS.find((p) => p.id === productId);
+    const product = allProducts.find((p) => p.id === productId);
     if (product) {
       cart.push({
         id: product.id,
         name: product.nombre,
         price: product.precio,
         quantity: 1,
-        image: product.imagen
+        image: product.imagen,
       });
     }
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartCount();
-
-  const card = document.querySelector(`.product-card button[onclick="addToCart(${productId})"]`)?.parentElement;
-  const button = card?.querySelector("button");
-
-  if (card && button) {
-    card.classList.add("added");
-    button.classList.add("added");
-
-    const originalText = button.textContent;
-    button.textContent = "Agregado";
-
-    setTimeout(() => {
-      card.classList.remove("added");
-      button.classList.remove("added");
-      button.textContent = originalText;
-    }, 1000);
-  }
-};
-
-const updateCartCount = () => {
-  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-  const count = cart.reduce((acc: number, item: any) => acc + item.quantity, 0);
-  const cartCountEl = document.getElementById("cart-count");
-  if (cartCountEl) {
-    cartCountEl.textContent = count.toString();
-  }
 };
 
 (window as any).addToCart = addToCart;
 
-// Eventos de búsqueda
-searchInput.addEventListener("input", () => renderProducts());
-
-// Evento de click en categorías
 categoryList?.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;
   if (target.tagName === "LI") {
-    const selectedCategory = target.getAttribute("data-id") || "";
-
-    // Marcar activo
-    categoryList.querySelectorAll("li").forEach(li => li.classList.remove("active"));
+    selectedCategory = target.getAttribute("data-id") || "";
+    categoryList.querySelectorAll("li").forEach((li) => li.classList.remove("active"));
     target.classList.add("active");
-
-    renderProducts(selectedCategory);
+    renderProducts();
   }
 });
 
-renderProducts();
-updateCartCount();
+searchInput?.addEventListener("input", () => renderProducts());
+
+const initPage = async () => {
+  const [categorias, productos] = await Promise.all([getCategorias(), getProductos()]);
+
+  allProducts = productos;
+
+  const todosLi = document.createElement("li");
+  todosLi.textContent = "Todos";
+  todosLi.setAttribute("data-id", "");
+  todosLi.classList.add("active");
+  todosLi.addEventListener("click", () => {
+    selectedCategory = "";
+    categoryList?.querySelectorAll("li").forEach((li) => li.classList.remove("active"));
+    todosLi.classList.add("active");
+    renderProducts();
+  });
+  categoryList?.appendChild(todosLi);
+
+  categorias
+    .filter((c) => !c.eliminado)
+    .forEach((c) => {
+      const li = document.createElement("li");
+      li.textContent = c.nombre;
+      li.setAttribute("data-id", c.id.toString());
+      categoryList?.appendChild(li);
+    });
+
+  renderProducts();
+  updateCartCount();
+};
+
+initPage();
