@@ -1,32 +1,12 @@
 import type { IUser } from "../types/IUser";
-import type { Rol } from "../types/Rol";
-import { getUSer, removeUser } from "./localStorage";
-import { navigate } from "./navigate";
 
-export const checkAuhtUser = (
-  redireccion1: string,
-  redireccion2: string,
-  rol: Rol
-) => {
-  console.log("comienzo de checkeo");
-
-  const user = getUSer();
-
-  if (!user) {
-    console.log("no existe en local");
-    navigate(redireccion1);
-    return;
-  } else {
-    const parseUser: IUser = JSON.parse(user);
-    if (parseUser.rol !== rol) {
-      console.log("no tiene el rol necesario");
-      navigate(redireccion2);
-      return;
-    }
-  }
+export const saveUser = (user: IUser) => {
+  const parseUser = JSON.stringify(user);
+  localStorage.setItem("userData", parseUser);
 };
-
-export const logout = () => {
-  removeUser();
-  navigate("/src/pages/auth/login/login.html");
+export const getUSer = () => {
+  return localStorage.getItem("userData");
+};
+export const removeUser = () => {
+  localStorage.removeItem("userData");
 };

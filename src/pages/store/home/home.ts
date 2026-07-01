@@ -1,8 +1,13 @@
 import { getCategorias, getProductos } from "../../../utils/fetch";
-import { checkAuhtUser } from "../../../utils/auth";
+import { navigate } from "../../../utils/navigate";
+import { getUSer } from "../../../utils/localStorage";
 import type { Product } from "../../../types/product";
 
-checkAuhtUser("/src/pages/auth/login/login.html", "/src/pages/auth/login/login.html", "USUARIO");
+// Guard de sesión - cualquier rol puede ver el catálogo
+const user = getUSer();
+if (!user) {
+  navigate("/src/pages/auth/login/login.html");
+}
 
 const productList = document.getElementById("product-list");
 const searchInput = document.getElementById("search") as HTMLInputElement;
