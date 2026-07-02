@@ -7,20 +7,19 @@
   <link rel="stylesheet" href="./orders.css">
 </head>
 <body>
-  <!-- Navbar -->
   <nav class="navbar">
-    <span class="logo">Food Store</span>
+    <span class="logo">🍔 Food Store</span>
     <div class="nav-links">
       <a href="/src/pages/store/home/home.html">Tienda</a>
       <a href="/src/pages/store/cart/cart.html">🛒 Carrito <span id="cart-count">0</span></a>
-      <button id="logoutButton" class="btn-secondary">Cerrar Sesión</button>
+      <button id="logoutButton">Cerrar Sesión</button>
     </div>
   </nav>
 
-  <main class="orders-container">
+  <div class="orders-container">
     <h1>Mis Pedidos</h1>
     <div id="orders-list"></div>
-  </main>
+  </div>
 
   <script type="module" src="./orders.ts"></script>
 </body>

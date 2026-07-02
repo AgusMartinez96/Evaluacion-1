@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Store - Gestión de Pedidos</title>
+  <link rel="stylesheet" href="./orders.css">
+</head>
+<body>
+  <div class="layout">
+    <aside id="sidebar">
+      <h2>🍔 Food Store</h2>
+      <nav>
+        <ul>
+          <li><a href="/src/pages/admin/adminHome/home.html">Dashboard</a></li>
+          <li><a href="/src/pages/admin/categories/categories.html">Categorías</a></li>
+          <li><a href="/src/pages/admin/products/products.html">Productos</a></li>
+          <li><a href="./orders.html">Pedidos</a></li>
+          <li><a href="/src/pages/store/home/home.html">Ver Tienda</a></li>
+        </ul>
+      </nav>
+      <button id="logoutButton">Cerrar Sesión</button>
+    </aside>
+
+    <main>
+      <div class="header-bar">
+        <h1>Gestión de Pedidos</h1>
+        <div>
+          <label>Filtrar por estado:</label>
+          <select id="filtro-estado">
+            <option value="">Todos los pedidos</option>
+            <option value="PENDIENTE">Pendiente</option>
+            <option value="CONFIRMADO">Confirmado</option>
+            <option value="TERMINADO">Terminado</option>
+            <option value="CANCELADO">Cancelado</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="orders-list"></div>
+
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <h2>Detalle del Pedido</h2>
+          <div id="modal-contenido"></div>
+          <button id="btn-cerrar-modal" class="btn-secondary">Cerrar</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="./orders.ts"></script>
+</body>
+</html>

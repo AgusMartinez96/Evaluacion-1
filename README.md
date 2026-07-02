@@ -39,5 +39,10 @@ Los datos se consumen desde archivos JSON locales mediante fetch().
  ┣ 📄 tsconfig.json
  ┣ 📄 README.md
 
+Credenciales
+Con las credenciales del usuarios.json:
+
+Admin: admin@admin.com / 123456
+Cliente: cliente@food.com / cliente123
 
 El costo de envío es una constante fija de $0 (ENVIO = 0) definida en src/pages/store/cart/cart.ts.
