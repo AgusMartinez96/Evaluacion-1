@@ -38,3 +38,6 @@ Los datos se consumen desde archivos JSON locales mediante fetch().
  ┣ 📄 package.json
  ┣ 📄 tsconfig.json
  ┣ 📄 README.md
+
+
+El costo de envío es una constante fija de $0 (ENVIO = 0) definida en src/pages/store/cart/cart.ts.

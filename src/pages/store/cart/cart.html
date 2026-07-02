@@ -2,38 +2,62 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <!-- Enlace al CSS -->
-  <link rel="stylesheet" href="./cart.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Food Store - Carrito</title>
+  <link rel="stylesheet" href="./cart.css">
 </head>
 <body>
   <nav class="navbar">
-    <span class="logo">FoodStore</span>
+    <span class="logo">🍔 Food Store</span>
     <div class="nav-links">
-      <a href="../home/home.html">Catálogo</a>
-      <a href="./cart.html">Carrito <span id="cart-count">0</span></a>
+      <a href="/src/pages/store/home/home.html">Inicio</a>
+      <a href="/src/pages/store/cart/cart.html">🛒 Carrito <span id="cart-count">0</span></a>
+      <button id="logoutButton">Cerrar Sesión</button>
     </div>
   </nav>
-  
+
   <h1>Mi Carrito</h1>
 
-  <div class="cart-layout">
-    <!-- Productos -->
-    <div id="cart-items" class="cart-container"></div>
-
-    <!-- Resumen -->
-    <aside class="cart-summary">
-      <h2>Resumen</h2>
-      <p id="cart-subtotal">Subtotal: $0</p>
-      <p id="cart-total">Total: $0</p>
-      <button>Finalizar compra</button>
-      <p class="warning">El checkout no está disponible en esta versión</p>
-      <button onclick="emptyCart()">Vaciar carrito</button>
-      <a href="../home/home.html">← Volver al catálogo</a>
-    </aside>
+  <div id="empty-cart" style="display:none">
+    <p>Tu carrito está vacío.</p>
+    <a href="/src/pages/store/home/home.html">← Volver a la tienda</a>
   </div>
 
-  <script type="module" src="./cart.js"></script>
-</body>
+  <div id="cart-content">
+    <div class="cart-layout">
+      <div id="cart-items" class="cart-container"></div>
 
+      <aside class="cart-summary">
+        <h2>Resumen del Pedido</h2>
+        <p>Subtotal: <span id="cart-subtotal">$0</span></p>
+        <p>Envío: <span id="cart-envio">$0</span></p>
+        <p><strong>Total: <span id="cart-total">$0</span></strong></p>
+        <button id="btn-vaciar">Vaciar Carrito</button>
+        <button id="btn-checkout">Proceder al Pago</button>
+      </aside>
+    </div>
+
+    <!-- Formulario de checkout -->
+    <div id="checkout-form" style="display:none">
+      <h2>Completar Pedido</h2>
+      <div>
+        <label for="telefono">Teléfono</label>
+        <input type="text" id="telefono" placeholder="Ej: +54-11-1234">
+      </div>
+      <div>
+        <label for="forma-pago">Método de Pago</label>
+        <select id="forma-pago">
+          <option value="">Seleccioná un método</option>
+          <option value="TARJETA">Tarjeta</option>
+          <option value="TRANSFERENCIA">Transferencia</option>
+          <option value="EFECTIVO">Efectivo</option>
+        </select>
+      </div>
+      <button id="btn-confirmar">Confirmar Pedido</button>
+      <button id="btn-cancelar">Cancelar</button>
+    </div>
+  </div>
+
+  <script type="module" src="./cart.ts"></script>
+</body>
 </html>
