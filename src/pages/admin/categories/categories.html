@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Store - Categorías</title>
+</head>
+<body>
+  <div style="display:flex">
+    <aside style="width:200px; min-height:100vh; background:#333; color:white; padding:20px">
+      <h2>🍔 Food Store</h2>
+      <nav>
+        <ul style="list-style:none; padding:0">
+          <li><a href="/src/pages/admin/adminHome/home.html" style="color:white">Dashboard</a></li>
+          <li><a href="./categories.html" style="color:white">Categorías</a></li>
+          <li><a href="/src/pages/admin/products/products.html" style="color:white">Productos</a></li>
+          <li><a href="/src/pages/admin/orders/orders.html" style="color:white">Pedidos</a></li>
+          <li><a href="/src/pages/store/home/home.html" style="color:white">Ver Tienda</a></li>
+        </ul>
+      </nav>
+      <button id="logoutButton">Cerrar Sesión</button>
+    </aside>
+
+    <main style="flex:1; padding:20px">
+      <div style="display:flex; justify-content:space-between; align-items:center">
+        <h1>Gestión de Categorías</h1>
+        <button id="btn-nueva">+ Nueva Categoría</button>
+      </div>
+
+      <table id="tabla-categorias" border="1" style="width:100%; border-collapse:collapse">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-categorias"></tbody>
+      </table>
+
+      <!-- Modal crear/editar -->
+      <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000">
+        <div style="background:white; padding:24px; border-radius:8px; width:400px">
+          <h2 id="modal-titulo">Nueva Categoría</h2>
+          <div>
+            <label>Nombre</label>
+            <input type="text" id="input-nombre" style="width:100%; margin:8px 0">
+          </div>
+          <div>
+            <label>Descripción</label>
+            <textarea id="input-descripcion" style="width:100%; margin:8px 0"></textarea>
+          </div>
+          <div>
+            <label>URL de Imagen</label>
+            <input type="text" id="input-imagen" placeholder="https://ejemplo.com/imagen.jpg" style="width:100%; margin:8px 0">
+          </div>
+          <button id="btn-guardar">Guardar</button>
+          <button id="btn-cerrar-modal">Cancelar</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="./categories.ts"></script>
+</body>
+</html>

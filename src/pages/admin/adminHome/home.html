@@ -1,15 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Store - Admin</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Store - Admin</title>
 </head>
-
 <body>
-    <h1>Hola desde la vista de admin</h1>
-    <button id="logoutButton">Logout</button>
-    <script type="module" src="./home.ts"></script>
+  <div style="display:flex">
+    
+    <!-- Sidebar -->
+    <aside id="sidebar" style="width:200px; min-height:100vh; background:#333; color:white; padding:20px">
+      <h2>🍔 Food Store</h2>
+      <nav>
+        <ul style="list-style:none; padding:0">
+          <li><a href="./home.html" style="color:white">Dashboard</a></li>
+          <li><a href="/src/pages/admin/categories/categories.html" style="color:white">Categorías</a></li>
+          <li><a href="/src/pages/admin/products/products.html" style="color:white">Productos</a></li>
+          <li><a href="/src/pages/admin/orders/orders.html" style="color:white">Pedidos</a></li>
+          <li><a href="/src/pages/store/home/home.html" style="color:white">Ver Tienda</a></li>
+        </ul>
+      </nav>
+      <button id="logoutButton">Cerrar Sesión</button>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main style="flex:1; padding:20px">
+      <h1>Panel de Administración</h1>
+
+      <!-- 4 tarjetas de estadísticas -->
+      <div style="display:flex; gap:16px; flex-wrap:wrap">
+        <div class="stat-card">
+          <h3>Categorías</h3>
+          <p id="total-categorias">-</p>
+        </div>
+        <div class="stat-card">
+          <h3>Productos</h3>
+          <p id="total-productos">-</p>
+        </div>
+        <div class="stat-card">
+          <h3>Pedidos</h3>
+          <p id="total-pedidos">-</p>
+        </div>
+        <div class="stat-card">
+          <h3>Disponibles</h3>
+          <p id="total-disponibles">-</p>
+        </div>
+      </div>
+
+      <!-- Panel de resumen -->
+      <div style="margin-top:32px">
+        <h2>Resumen Rápido</h2>
+        <div id="resumen"></div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="./home.ts"></script>
 </body>
 </html>
