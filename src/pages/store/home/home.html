@@ -4,37 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Food Store - Catálogo</title>
-  <!-- Vincular el CSS -->
   <link rel="stylesheet" href="./home.css">
 </head>
 <body>
-  <!-- Barra de navegación -->
   <nav class="navbar">
-    <span class="logo">FoodStore</span>
+    <span class="logo">🍔 Food Store</span>
     <div class="nav-links">
-      <a href="./home.html">Catálogo</a>
-      <a href="../cart/cart.html">Carrito <span id="cart-count">0</span></a>
+      <a href="./home.html">Inicio</a>
+      <a href="/src/pages/client/orders/orders.html">Mis Pedidos</a>
+      <a href="/src/pages/store/cart/cart.html">🛒 Carrito <span id="cart-count">0</span></a>
+      <button id="logoutButton">Cerrar Sesión</button>
     </div>
   </nav>
 
   <div class="catalog-layout">
-    <!-- Menú lateral -->
     <aside class="sidebar">
       <h2>Categorías</h2>
-      <ul id="category-list">
-        <li data-id="">Todos los productos</li>
-      </ul>
+      <ul id="category-list"></ul>
     </aside>
 
-    <!-- Sección principal -->
     <main class="main-content">
-      <h1>Catálogo</h1>
-      <input type="text" id="search" placeholder="Buscar producto...">
+      <h1>Todos los Productos</h1>
+      <div class="filters">
+        <input type="text" id="search" placeholder="Buscar producto...">
+        <select id="order">
+          <option value="">Ordenar por</option>
+          <option value="az">Nombre A-Z</option>
+          <option value="za">Nombre Z-A</option>
+          <option value="asc">Precio ascendente</option>
+          <option value="desc">Precio descendente</option>
+        </select>
+      </div>
       <div id="product-list"></div>
-      <p id="feedback"></p>
     </main>
   </div>
 
-  <script type="module" src="./home.js"></script>
+  <script type="module" src="./home.ts"></script>
 </body>
 </html>
