@@ -15,34 +15,61 @@ Los datos se consumen desde archivos JSON locales mediante fetch().
 2. Abrir una terminal en la carpeta raíz del proyecto.
 3. Instalar dependencias:
 ```bash
-   npm install
+npm install
 ```
 4. Levantar el servidor de desarrollo:
 ```bash
-   npm run dev
+npm run dev
 ```
 5. Abrir el navegador en `http://localhost:5173`
 
-## Estructura del proyecto📦 primer_parcial/
- ┣ 📂 home/
- ┃ ┣ 📄 home.html
- ┃ ┣ 📄 home.css
- ┃ ┗ 📄 home.ts
- ┣ 📂 cart/
- ┃ ┣ 📄 cart.html
- ┃ ┣ 📄 cart.css
- ┃ ┗ 📄 cart.ts
- ┣ 📂 data/
- ┃ ┗ 📄 data.ts
- ┣ 📄 vite.config.ts
- ┣ 📄 package.json
- ┣ 📄 tsconfig.json
- ┣ 📄 README.md
+## Credenciales de prueba
+| Rol | Email | Contraseña |
+|-----|-------|------------|
+| ADMIN | admin@admin.com | 123456 |
+| USUARIO | cliente@food.com | cliente123 |
 
-Credenciales
-Con las credenciales del usuarios.json:
+## Nota sobre el envío
+El costo de envío es una constante fija de $0 (`ENVIO = 0`) definida en `src/pages/store/cart/cart.ts`.
 
-Admin: admin@admin.com / 123456
-Cliente: cliente@food.com / cliente123
-
-El costo de envío es una constante fija de $0 (ENVIO = 0) definida en src/pages/store/cart/cart.ts.
+## Estructura del proyecto
+```
+final-prog3/
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── public/
+│   └── data/
+│       ├── categorias.json
+│       ├── productos.json
+│       ├── usuarios.json
+│       └── pedidos.json
+└── src/
+    ├── types/
+    │   ├── category.ts
+    │   ├── IUser.ts
+    │   ├── Pedido.ts
+    │   ├── product.ts
+    │   └── Rol.ts
+    ├── utils/
+    │   ├── auth.ts
+    │   ├── fetch.ts
+    │   ├── localStorage.ts
+    │   └── navigate.ts
+    └── pages/
+        ├── auth/
+        │   ├── login/
+        │   └── register/
+        ├── store/
+        │   ├── home/
+        │   ├── productDetail/
+        │   └── cart/
+        ├── client/
+        │   └── orders/
+        └── admin/
+            ├── adminHome/
+            ├── categories/
+            ├── products/
+            └── orders/
+```
