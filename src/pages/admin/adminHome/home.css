@@ -1,0 +1,119 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Layout general */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+.layout {
+  display: flex;
+}
+
+/* Sidebar */
+#sidebar {
+  width: 220px;
+  min-height: 100vh;
+  background: #2c3e50;
+  color: #ecf0f1;
+  padding: 20px;
+}
+
+#sidebar h2 {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+#sidebar nav ul {
+  list-style: none;
+}
+
+#sidebar nav ul li {
+  margin: 12px 0;
+}
+
+#sidebar nav ul li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+#sidebar nav ul li a:hover {
+  color: #1abc9c;
+}
+
+#logoutButton {
+  margin-top: 20px;
+  background: #e74c3c;
+  border: none;
+  padding: 10px 16px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#logoutButton:hover {
+  background: #c0392b;
+}
+
+/* Main */
+main {
+  flex: 1;
+  padding: 24px;
+}
+
+main h1 {
+  margin-bottom: 20px;
+}
+
+/* Tarjetas de estadísticas */
+.stats-container {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 180px;
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-card h3 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.stat-card p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #1abc9c;
+}
+
+/* Panel de resumen */
+.summary-panel {
+  margin-top: 32px;
+}
+
+#resumen {
+  margin-top: 16px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}

@@ -4,30 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Food Store - Categorías</title>
+  <link rel="stylesheet" href="./categories.css">
 </head>
 <body>
-  <div style="display:flex">
-    <aside style="width:200px; min-height:100vh; background:#333; color:white; padding:20px">
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside id="sidebar">
       <h2>🍔 Food Store</h2>
       <nav>
-        <ul style="list-style:none; padding:0">
-          <li><a href="/src/pages/admin/adminHome/home.html" style="color:white">Dashboard</a></li>
-          <li><a href="./categories.html" style="color:white">Categorías</a></li>
-          <li><a href="/src/pages/admin/products/products.html" style="color:white">Productos</a></li>
-          <li><a href="/src/pages/admin/orders/orders.html" style="color:white">Pedidos</a></li>
-          <li><a href="/src/pages/store/home/home.html" style="color:white">Ver Tienda</a></li>
+        <ul>
+          <li><a href="/src/pages/admin/adminHome/home.html">Dashboard</a></li>
+          <li><a href="./categories.html">Categorías</a></li>
+          <li><a href="/src/pages/admin/products/products.html">Productos</a></li>
+          <li><a href="/src/pages/admin/orders/orders.html">Pedidos</a></li>
+          <li><a href="/src/pages/store/home/home.html">Ver Tienda</a></li>
         </ul>
       </nav>
       <button id="logoutButton">Cerrar Sesión</button>
     </aside>
 
-    <main style="flex:1; padding:20px">
-      <div style="display:flex; justify-content:space-between; align-items:center">
+    <!-- Contenido principal -->
+    <main>
+      <div class="header-bar">
         <h1>Gestión de Categorías</h1>
-        <button id="btn-nueva">+ Nueva Categoría</button>
+        <button id="btn-nueva" class="btn-primary">+ Nueva Categoría</button>
       </div>
 
-      <table id="tabla-categorias" border="1" style="width:100%; border-collapse:collapse">
+      <table id="tabla-categorias">
         <thead>
           <tr>
             <th>ID</th>
@@ -41,23 +44,23 @@
       </table>
 
       <!-- Modal crear/editar -->
-      <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000">
-        <div style="background:white; padding:24px; border-radius:8px; width:400px">
+      <div id="modal" class="modal">
+        <div class="modal-content">
           <h2 id="modal-titulo">Nueva Categoría</h2>
           <div>
             <label>Nombre</label>
-            <input type="text" id="input-nombre" style="width:100%; margin:8px 0">
+            <input type="text" id="input-nombre">
           </div>
           <div>
             <label>Descripción</label>
-            <textarea id="input-descripcion" style="width:100%; margin:8px 0"></textarea>
+            <textarea id="input-descripcion"></textarea>
           </div>
           <div>
             <label>URL de Imagen</label>
-            <input type="text" id="input-imagen" placeholder="https://ejemplo.com/imagen.jpg" style="width:100%; margin:8px 0">
+            <input type="text" id="input-imagen" placeholder="https://ejemplo.com/imagen.jpg">
           </div>
-          <button id="btn-guardar">Guardar</button>
-          <button id="btn-cerrar-modal">Cancelar</button>
+          <button id="btn-guardar" class="btn-primary">Guardar</button>
+          <button id="btn-cerrar-modal" class="btn-secondary">Cancelar</button>
         </div>
       </div>
     </main>

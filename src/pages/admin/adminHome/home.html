@@ -4,31 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Food Store - Admin</title>
+  <link rel="stylesheet" href="./home.css">
 </head>
 <body>
-  <div style="display:flex">
+  <div class="layout">
     
     <!-- Sidebar -->
-    <aside id="sidebar" style="width:200px; min-height:100vh; background:#333; color:white; padding:20px">
+    <aside id="sidebar">
       <h2>🍔 Food Store</h2>
       <nav>
-        <ul style="list-style:none; padding:0">
-          <li><a href="./home.html" style="color:white">Dashboard</a></li>
-          <li><a href="/src/pages/admin/categories/categories.html" style="color:white">Categorías</a></li>
-          <li><a href="/src/pages/admin/products/products.html" style="color:white">Productos</a></li>
-          <li><a href="/src/pages/admin/orders/orders.html" style="color:white">Pedidos</a></li>
-          <li><a href="/src/pages/store/home/home.html" style="color:white">Ver Tienda</a></li>
+        <ul>
+          <li><a href="./home.html">Dashboard</a></li>
+          <li><a href="/src/pages/admin/categories/categories.html">Categorías</a></li>
+          <li><a href="/src/pages/admin/products/products.html">Productos</a></li>
+          <li><a href="/src/pages/admin/orders/orders.html">Pedidos</a></li>
+          <li><a href="/src/pages/store/home/home.html">Ver Tienda</a></li>
         </ul>
       </nav>
       <button id="logoutButton">Cerrar Sesión</button>
     </aside>
 
     <!-- Contenido principal -->
-    <main style="flex:1; padding:20px">
+    <main>
       <h1>Panel de Administración</h1>
 
       <!-- 4 tarjetas de estadísticas -->
-      <div style="display:flex; gap:16px; flex-wrap:wrap">
+      <div class="stats-container">
         <div class="stat-card">
           <h3>Categorías</h3>
           <p id="total-categorias">-</p>
@@ -48,7 +49,7 @@
       </div>
 
       <!-- Panel de resumen -->
-      <div style="margin-top:32px">
+      <div class="summary-panel">
         <h2>Resumen Rápido</h2>
         <div id="resumen"></div>
       </div>

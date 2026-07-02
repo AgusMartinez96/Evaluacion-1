@@ -1,0 +1,138 @@
+:root {
+  --color-primario: #ff6347;
+  --color-secundario: #1abc9c;
+  --color-texto: #333;
+  --color-blanco: #fff;
+  --color-borde: #ddd;
+  --color-focus: #ff4500;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f8;
+  color: var(--color-texto);
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2c3e50;
+  color: var(--color-blanco);
+  padding: 12px 24px;
+}
+
+.navbar .logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.navbar .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar a {
+  color: var(--color-blanco);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.navbar a:hover {
+  color: var(--color-secundario);
+}
+
+.btn-secondary {
+  background: #e74c3c;
+  border: none;
+  padding: 8px 14px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: #c0392b;
+}
+
+/* Contenedor principal */
+.orders-container {
+  padding: 24px;
+}
+
+.orders-container h1 {
+  margin-bottom: 20px;
+}
+
+/* Cards de pedidos */
+.order-card {
+  background: var(--color-blanco);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.order-card:hover {
+  transform: translateY(-4px);
+}
+
+.order-card h3 {
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+
+.order-card p {
+  margin: 4px 0;
+}
+
+/* Modal */
+#modal-pedido {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#modal-pedido > div {
+  background: var(--color-blanco);
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+}
+
+#modal-pedido h2 {
+  margin-bottom: 12px;
+}
+
+#modal-pedido p {
+  margin: 6px 0;
+}
+
+#btn-cerrar-modal {
+  margin-top: 12px;
+  background: var(--color-primario);
+  border: none;
+  padding: 8px 14px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#btn-cerrar-modal:hover {
+  background: var(--color-focus);
+}
